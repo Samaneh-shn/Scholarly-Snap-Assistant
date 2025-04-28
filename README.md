@@ -12,6 +12,13 @@
 - **Secure API Handling**: API keys are managed server-side via environment variables.
 - **Responsive UI**: Built with Tailwind CSS for a modern, mobile-friendly experience.
 
+## Demo Video
+Below is a GIF demonstrating how the Scholarly Snap Assistant works — from recording/uploading audio to generating and downloading summaries.
+
+
+https://github.com/user-attachments/assets/57bdf9f5-cae2-419a-ad02-69ffc0d044f4
+
+
 ## Technologies
 - **Frontend**: HTML, Tailwind CSS, custom CSS, JavaScript, jsPDF (for PDF export)
 - **Backend**: Node.js, Express

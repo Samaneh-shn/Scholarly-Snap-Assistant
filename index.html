@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholarly Snap Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- jsPDF for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.png" type="image/png">>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8 w-full max-w-3xl mx-4">
+
+    <!-- Header -->
+    <header class="flex items-center space-x-3 mb-6">
+      <img src="logo.png" alt="Scholarly Snap Logo" class="h-32">
+      <h1 class="text-3xl font-semibold text-gray-900 tracking-tight">Scholarly Snap Assistant</h1>
+    </header>
+
+    <p class="text-gray-600 leading-relaxed mb-8">
+      Capture lectures or meetings with instant transcripts and summaries.
+    </p>
+
+    <!-- Controls -->
+    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
+      <button id="startRecord" class="btn-primary">Start Recording</button>
+      <button id="stopRecord" disabled class="btn-secondary">Stop Recording</button>
+      <button id="uploadButton" class="btn-secondary">Upload Audio</button>
+      <input type="file" id="audioUpload" accept="audio/*" class="hidden" />
+    </div>
+
+    <!-- Status & Error -->
+    <div id="status" class="flex items-center space-x-2 text-emerald-600 font-medium hidden">
+      <div class="spinner"></div><span></span>
+    </div>
+    <div id="error" class="flex items-center space-x-2 text-red-500 font-medium hidden">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg><span></span>
+    </div>
+
+    <!-- Transcript -->
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-900">Transcript</h2>
+      <textarea id="transcript" readonly
+                class="w-full h-48 p-4 mt-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+                aria-label="Audio transcript" aria-live="polite"></textarea>
+      <div class="flex items-center space-x-4 mt-3">
+        <label for="transcriptFormat" class="text-gray-700 font-medium">Download as:</label>
+        <select id="transcriptFormat"
+                class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+          <option value="txt">Text (.txt)</option>
+          <option value="pdf">PDF (.pdf)</option>
+          <option value="doc">Word (.doc)</option>
+        </select>
+        <button onclick="downloadText('transcript', 'transcript')" class="btn-primary">
+          Download
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-900">Summary</h2>
+      <div class="flex items-center space-x-4 mt-3">
+        <label for="summaryLength" class="text-gray-700 font-medium">Summary Length:</label>
+        <select id="summaryLength"
+                class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+          <option value="short">Short (1-2 sentences)</option>
+          <option value="medium" selected>Medium (2-3 sentences)</option>
+          <option value="detailed">Detailed (3-5 sentences)</option>
+        </select>
+        <button id="regenerateSummary" class="btn-primary btn-haircolor" disabled>Regenerate Summary</button>
+      </div>
+      <textarea id="summary" readonly
+                class="w-full h-40 p-4 mt-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+                aria-label="Summary of recording" aria-live="polite"></textarea>
+      <div class="flex items-center space-x-4 mt-3">
+        <label for="summaryFormat" class="text-gray-700 font-medium">Download as:</label>
+        <select id="summaryFormat"
+                class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+          <option value="txt">Text (.txt)</option>
+          <option value="pdf">PDF (.pdf)</option>
+          <option value="doc">Word (.doc)</option>
+        </select>
+        <button onclick="downloadText('summary', 'summary')" class="btn-primary">
+          Download
+        </button>
+      </div>
+    </div>
+
+    <!-- Playback -->
+    <div class="mt-8">
+      <h2 class="text-xl font-semibold text-gray-900">Recording Playback</h2>
+      <audio id="audioPlayer" controls class="w-full mt-3 rounded-lg hidden"></audio>
+      <div class="flex space-x-4 mt-3">
+        <button onclick="downloadRecording()" class="btn-primary">Download Recording</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

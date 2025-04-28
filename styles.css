@@ -1,0 +1,108 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #20757A, #2A8A90);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #20757A;
+}
+
+.btn-secondary {
+    background: linear-gradient(90deg, #6B7280, #9CA3AF);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:disabled {
+    background: #D1D5DB;
+    cursor: not-allowed;
+}
+
+/* New class for buttons with the hair color */
+.btn-haircolor {
+    background: #D65C41 !important; /* Solid color matching the hair */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-haircolor:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-haircolor:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #E67E22;
+}
+
+.btn-haircolor:disabled {
+    background: #D1D5DB !important;
+    cursor: not-allowed;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+textarea {
+    resize: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+audio {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #20757A;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+    .max-w-3xl {
+        max-width: 100%;
+    }
+    textarea {
+        height: 32rem;
+    }
+}
